@@ -302,7 +302,7 @@ baidu_analytics: 9791f5106f89d0943bb966e9c094f515
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname: mrwany
   count: true
 
@@ -317,7 +317,7 @@ changyan:
 
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
-#youyan_uid: your uid
+youyan_uid: 2139732
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
