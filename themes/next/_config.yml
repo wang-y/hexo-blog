@@ -11,7 +11,7 @@ keywords: "java,java web,spring,sql,redis"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss: 
+rss: /atom.xml
 
 # Specify the date when the site was setup
 #since: 2015
@@ -295,7 +295,7 @@ han: false
 #swiftype_key:
 
 # Baidu Analytics ID
-baidu_analytics: 9791f5106f89d0943bb966e9c094f515
+baidu_analytics: eab4ec63f9250ad0866e1e0d88fafa70
 
 # Duoshuo ShortName
 #duoshuo_shortname:
