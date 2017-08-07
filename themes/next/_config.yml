@@ -50,7 +50,7 @@ menu:
   categories: /categories/
   tags: /tags/
   archives: /archives/
-  about: /about/
+  #about: /about/
   #sitemap: /sitemap.xml
   #commonweal: /404.html
 
