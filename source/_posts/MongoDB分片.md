@@ -92,7 +92,7 @@ MongoDB 3.4 后需要搭建副本集
 前端路由，客户端由此接入，且让整个集群看上去像单一数据库，前端应用可以透明使用。
 
 ```
-> mongos --port 3333 --configdb conf/conf0:1111,conf1:2223 --logpath=/usr/router/logs/router.log
+> mongos --port 3333 --configdb conf/conf0:2222,conf1:2223 --logpath=/usr/router/logs/router.log
 
 > mongo admin --port 3333  #连接到Router
 > db.runCommand({addshard:"127.0.0.1:1111"})  #添加Shard节点
