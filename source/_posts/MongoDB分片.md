@@ -15,7 +15,7 @@ tags:
 127.0.0.1 replication1
 127.0.0.1 replication2
 ```
-
+<!-- more -->
 **启动一个MongoDB服务**
 ```
 mongod --port "PORT" --dbpath "YOUR_DB_DATA_PATH" --replSet "REPLICA_SET_INSTANCE_NAME"
