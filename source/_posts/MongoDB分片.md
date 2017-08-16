@@ -101,9 +101,11 @@ MongoDB 3.4 后需要搭建副本集
 > use test  #创建test数据库
 > db.col.insert({"name":"data1"})  #创建col集合，并插入一条数据
 > use admin  #使用admin库
-> db.runCommand({ enablesharding:"test"})   #设置分片存储的数据库
-> db.runCommand({shardcollection: "test.col", key: {id:1}})  #设分片集合，并设置分片字段
+> db.runCommand({ enablesharding:"test"})   #设置分片存储的数据库(一旦enable了个数据库，mongos将会把数据库里的不同数据集放在不同的分片上。只有数据集也被分片，否则一个数据集的所有数据将放在一个分片上。)
+> db.runCommand({shardcollection: "test.col", key: {id:1}})  #设分片集合，并设置片键(shard key)
 ```
+
+> shard key:片键；MongoDB不允许插入没有片键的文档。2.4版本以后MongoDB开始支持基于哈希的分片，但它仍然是基于范围的，只是将提供的片键散列成一个非常大的长整型作为最终的片键。
 
 测试
 ```
