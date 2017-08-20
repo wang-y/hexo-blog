@@ -1,7 +1,10 @@
 ---
 title: MongoDB/Elasticsearch 瞎对比
 date: 2017-08-18 17:40:07
+categories: 技术
 tags:
+    - MongoDB
+    - ElasticSearch
 ---
 
 # MongoDB
