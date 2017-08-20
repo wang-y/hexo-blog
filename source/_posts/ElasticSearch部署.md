@@ -17,41 +17,51 @@ tags:
 
 # 部署
 > 请先确认安装有Java环境
+
 ## Windows
+
 解压压后运行 'bin' 目录下的 elasticsearch.bat 即可
+
 ## Linux
+
 解压压后运行 'bin' 目录下的 elasticsearch 即可
 
-#### Linux 中启动失败的解决办法
+### Linux 中启动失败的解决办法
+
 **由于elasticsearch2.0版本以后不能使用root来启动，所以需要创建一个普通用户来启动。**
-```shell
+
+```
 [root@localhost ~]# groupadd elasticsearch
 [root@localhost ~]# useradd elasticsearch -g elasticsearch
 [root@localhost ~]# chown -R elasticsearch.elasticsearch /{path}/elasticsearch-5.5.1
 [root@localhost ~]# su - elasticsearch
 ```
+
 **由普通用户来启动，则可以正常启动服务。**
 
 **ERROR: bootstrap checks failed**
-```shell
+
+```
 1. max file descriptors [65535] for elasticsearch process is too low, increase to at least [65536]
-[root@localhost ~]# vi /etc/sysctl.conf  #最后一行添加 fs.file-max=655350
+[root@localhost ~]# vi /etc/sysctl.conf  # 最后一行添加 fs.file-max=655350
 [root@localhost ~]# sysctl -p
-[root@localhost ~]# vi /etc/security/limits.conf  #新增四行 * soft nofile 65536|* hard nofile 131072|* soft nproc 2048|* hard nproc 4096
+[root@localhost ~]# vi /etc/security/limits.conf  # 新增四行 * soft nofile 65536|* hard nofile 131072|* soft nproc 2048|* hard nproc 4096
 
 2. max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
-[root@localhost ~]# vi /etc/sysctl.conf  #最后一行添加 vm.max_map_count=655360
+[root@localhost ~]# vi /etc/sysctl.conf  # 最后一行添加 vm.max_map_count=655360
 [root@localhost ~]# sysctl -p
 
 3.max number of threads [1024] for user [elasticsearch] likely too low, increase to at least [2048]
-[root@localhost ~]# /etc/security/limits.d/90-nproc.conf   #修改 * soft nproc 1024 ==>> * soft nproc 2048
-
+[root@localhost ~]# /etc/security/limits.d/90-nproc.conf   # 修改 * soft nproc 1024 ==>> * soft nproc 2048
 ```
 
 ## 插件
+
 ### Head
+
 > 5.x版本后，安装head查询需要NodeJS环境
-```shell
+
+```
 [root@localhost ~]# yum -y install xz  # 下载下来的NodeJS包是xz格式的，一般的Linux可能不识别，还需要安装xz.
 [root@localhost ~]# xz -d node*.tar.xz  # 解压nodejs的安装包
 [root@localhost ~]# tar -xvf node*.tar  # 解压nodejs的安装包
@@ -59,11 +69,12 @@ tags:
 export NODE_HOME=/{NodeJS Path}
 export PATH=$PATH:$NODE_HOME/bin
 [root@localhost ~]# source /etc/profile 
-
 [root@localhost ~]# npm install -g grunt-cli  # 安装grunt
 ```
 
+
 从git上下载head 
+
 ```
 [root@localhost ~]# git clone git://github.com/mobz/elasticsearch-head.git
 [root@localhost ~]# cd elasticsearch-head
@@ -86,16 +97,19 @@ connect: {
 [root@localhost elasticsearch-head]# npm install 
 [root@localhost elasticsearch-head]# grunt server
 ```
-**注**
+
+**注:**
 > elasticsearch 需要配置跨域信息
 >> http.cors.enabled: true
 >> 
 >> http.cors.allow-origin: "*"
 
+
 # 附：配置文件
 
 ## elasticsearch.yml
-```properties
+
+```
 ##################### Elasticsearch Configuration Example ##################### 
 #
 # 只是挑些重要的配置选项进行注释,其实自带的已经有非常细致的英文注释了!

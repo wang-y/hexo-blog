@@ -1,5 +1,5 @@
 ---
-title: MongoDB/Elasticsearch 不完全对比
+title: MongoDB/Elasticsearch 瞎对比
 date: 2017-08-18 17:40:07
 tags:
 ---

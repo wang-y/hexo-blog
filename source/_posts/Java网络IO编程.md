@@ -9,8 +9,11 @@ tags:
     - BIO
     - AIO
 ---
+
 # BIO编程
+
 ## 传统的BIO编程
+
 网络编程的基本模型是C/S模型，即两个进程间的通信。
 
 服务端提供IP和监听端口，客户端通过连接操作向服务端监听的地址发起连接请求，通过三次握手连接，如果连接成功建立，双方就可以通过套接字进行通信。
@@ -26,8 +29,11 @@ tags:
 ![Alt text](../../../../images/io-1.png)
 
 该模型最大的问题就是缺乏弹性伸缩能力，当客户端并发访问量增加后，服务端的线程个数和客户端并发访问数呈1:1的正比关系，Java中的线程也是比较宝贵的系统资源，线程数量快速膨胀后，系统的性能将急剧下降，随着访问量的继续增大，系统最终就死-掉-了。
-#### 同步阻塞式I/O创建的Server源码
+
+### 同步阻塞式I/O创建的Server源码
+
 ```java
+
 package com.anxpp.io.calculator.bio;  
 import java.io.IOException;  
 import java.net.ServerSocket;  
@@ -72,10 +78,14 @@ public final class ServerNormal {
             }  
         }  
     }  
-}  
+}
+
 ```
-#### 服务端消息处理线程ServerHandler源码
+
+### 服务端消息处理线程ServerHandler源码
+
 ```java
+
 package com.anxpp.io.calculator.bio;  
 import java.io.BufferedReader;  
 import java.io.IOException;  
@@ -143,9 +153,13 @@ public class ServerHandler implements Runnable{
         }  
     }  
 }  
+
 ```
-#### 同步阻塞式I/O创建的Client源码
+
+### 同步阻塞式I/O创建的Client源码
+
 ```java
+
 package com.anxpp.io.calculator.bio;  
 import java.io.BufferedReader;  
 import java.io.IOException;  
@@ -201,10 +215,14 @@ public class Client {
             }  
         }  
     }  
-}  
+}
+
 ```
-#### 测试代码，为了方便在控制台看输出结果，放到同一个程序（jvm）中运行
+
+### 测试代码，为了方便在控制台看输出结果，放到同一个程序（jvm）中运行
+
 ```java
+
 package com.anxpp.io.calculator.bio;  
 import java.io.IOException;  
 import java.util.Random;  
@@ -249,10 +267,14 @@ public class Test {
             }  
         }).start();  
     }  
-}  
+}
+
 ```
+
 **其中一次的运行结果**
+
 ```
+
 服务器已启动，端口号：12345
 算术表达式为：4-2
 服务器收到消息：4-2
@@ -269,16 +291,20 @@ ___结果为：6
 算术表达式为：1/6
 服务器收到消息：1/6
 ___结果为：0.16666666666666666
-...
+
 ```
+
 从以上代码，很容易看出，BIO主要的问题在于每当有一个新的客户端请求接入时，服务端必须创建一个新的线程来处理这条链路，在需要满足高性能、高并发的场景是没法应用的（大量创建新的线程会严重影响服务器性能，甚至罢工）。
+
 ## 伪异步I/O编程
+
 为了改进这种一连接一线程的模型，我们可以使用线程池来管理这些线程，实现1个或多个线程处理N个客户端的模型（但是底层还是使用的同步阻塞I/O），通常被称为“伪异步I/O模型”。
 伪异步I/O模型图：
 
 ![Alt text](../../../../images/io-2.png)
 
 实现很简单，我们只需要将新建线程的地方，交给线程池管理即可，只需要改动刚刚的Server代码即可：
+
 ```java
 package com.anxpp.io.calculator.bio;  
 import java.io.IOException;  
