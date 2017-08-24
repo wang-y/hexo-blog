@@ -181,7 +181,7 @@ interface Iterator<E> {
 
 # 继承默认方法(Inheritance of default methods)
 
-# 12.融会贯通(Putting it together)
+# 融会贯通(Putting it together)
 
 演示代码：
 ```java
