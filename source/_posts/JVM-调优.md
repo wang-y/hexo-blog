@@ -4,7 +4,7 @@ date: 2017-07-24 11:21:49
 categories: 技术
 tags: 
     - JVM
-    - java
+    - Java
 ---
 
 # 堆大小设置
