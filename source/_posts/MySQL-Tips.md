@@ -1,6 +1,7 @@
 ---
 title: MySQL Tips
 date: 2018-01-19 11:18:51
+categories: 技术
 tags:
     - MySQL
     - 主从同步
