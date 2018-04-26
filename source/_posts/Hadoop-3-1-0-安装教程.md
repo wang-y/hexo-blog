@@ -17,6 +17,8 @@ $ sudo apt-get install ssh
 $ sudo apt-get install pdsh
 ```
 
+<!--more -->
+
 # 搭建Hadoop Cluster
 
 ## 准备工作
